@@ -1,0 +1,133 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>PluginDialog</class>
+<widget class="QDialog">
+    <property name="name">
+        <cstring>PluginDialog</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>613</width>
+            <height>289</height>
+        </rect>
+    </property>
+    <property name="caption">
+        <string>Plugin Dialog</string>
+    </property>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>textLabel2</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>80</x>
+                <y>30</y>
+                <width>400</width>
+                <height>60</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Please, select the path where plugins are installed.
+(maybe in $APP_INSTALLED/plugins). $APP_INSTALLED
+ is the dir where this app is installed.</string>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>textLabel1</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>20</x>
+                <y>120</y>
+                <width>100</width>
+                <height>20</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Plugins Path:</string>
+        </property>
+    </widget>
+    <widget class="QPushButton">
+        <property name="name">
+            <cstring>browserButton</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>360</x>
+                <y>170</y>
+                <width>140</width>
+                <height>27</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>&amp;Browser</string>
+        </property>
+        <property name="accel">
+            <string>Alt+B</string>
+        </property>
+    </widget>
+    <widget class="QLineEdit">
+        <property name="name">
+            <cstring>lineEdit1</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>150</x>
+                <y>120</y>
+                <width>400</width>
+                <height>25</height>
+            </rect>
+        </property>
+    </widget>
+    <widget class="QPushButton">
+        <property name="name">
+            <cstring>okButton</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>210</x>
+                <y>220</y>
+                <width>117</width>
+                <height>27</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>&amp;Ok</string>
+        </property>
+        <property name="accel">
+            <string>Alt+O</string>
+        </property>
+    </widget>
+</widget>
+<connections>
+    <connection>
+        <sender>browserButton</sender>
+        <signal>clicked()</signal>
+        <receiver>PluginDialog</receiver>
+        <slot>browserButton_clicked()</slot>
+    </connection>
+    <connection>
+        <sender>okButton</sender>
+        <signal>clicked()</signal>
+        <receiver>PluginDialog</receiver>
+        <slot>accept()</slot>
+    </connection>
+</connections>
+<includes>
+    <include location="global" impldecl="in declaration">qfiledialog.h</include>
+    <include location="local" impldecl="in implementation">plugindialog.ui.h</include>
+</includes>
+<variables>
+    <variable access="private">QString _pdir;</variable>
+</variables>
+<slots>
+    <slot>browserButton_clicked()</slot>
+</slots>
+<functions>
+    <function access="private" specifier="non virtual">init()</function>
+    <function specifier="non virtual" returnType="QString">getPDir()</function>
+</functions>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>
