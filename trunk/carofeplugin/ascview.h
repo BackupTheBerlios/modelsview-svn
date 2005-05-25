@@ -23,10 +23,13 @@ class AscView: public MVGLWidget{
 		void mouseMoveEvent ( QMouseEvent * e );
 	private:
 		Object3DGroup escena;
-		double mx,my,mz;
+		double mx,my,mz,_max;
 		
 		int _x,_y,_rotX,_rotY;
 		float _ortho;
+		double max(double a,double b){
+ 			 return a>b?a:b;
+		}
 };
 
 #endif

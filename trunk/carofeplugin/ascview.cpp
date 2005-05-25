@@ -2,7 +2,10 @@
 #include "ascview.h"
 #include <qfile.h>
 #include <cmath>
+
 using namespace std;
+
+
 
 AscView::AscView(QWidget *p):MVGLWidget(p){
 	escena.nObject3D =0;
@@ -48,6 +51,9 @@ bool AscView::loadFile(QString filename){
             y[2]=escena.object3D[i].pVertices[escena.object3D[i].pFaces[j].vertexIndices[2]].y;
             z[2]=escena.object3D[i].pVertices[escena.object3D[i].pFaces[j].vertexIndices[2]].z;
 	    //Comparar todos los vertices y quedarse con el maximo para ajustar el ortho.
+	    _max = max(max(max(abs(x[0]-mx),abs(x[1]-mx)),abs(x[2]-mx)),_max);
+	    _max = max(max(max(abs(y[0]-my),abs(y[1]-my)),abs(y[2]-my)),_max);
+            _max = max(max(max(abs(z[0]-mz),abs(z[1]-mz)),abs(z[2]-mz)),_max);
             double qx = x[1]-x[0];
             double qy = y[1]-y[0];
             double qz = z[1]-z[0];
@@ -65,7 +71,7 @@ bool AscView::loadFile(QString filename){
             escena.object3D[i].pFaces[j].normals.z=unidad[2];
         }//for j
    }//for i	
-      
+      _ortho = _max;
       updateGL();
       return true;
 }
@@ -110,7 +116,7 @@ void AscView::paintGL(){
    glEnable(GL_LIGHTING);
    float LuzAmb[4]={0.6,0.6,0.6,1.0};
    float LuzDif[4]={1.0,1.0,1.0,1.0};
-   float PosLuz[4]={500.0,500.0,500.0,1.0};
+   float PosLuz[4]={3*_max,3*_max,3*_max,1.0};
    float Material[4]={0.8,0.8,0.0,1.0};
    glMaterialfv(GL_FRONT,GL_AMBIENT_AND_DIFFUSE,Material);
    glLightfv(GL_LIGHT0,GL_AMBIENT,LuzAmb);

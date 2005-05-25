@@ -3,6 +3,10 @@
 #define MVGLWIDGET_H
 #include <qgl.h>
 #include <qevent.h>
+//Arreglarlo para mac osx
+#include <GL/gl.h>
+#include <GL/glu.h>
+
 
 
 // Interface 3DMVGLWidget

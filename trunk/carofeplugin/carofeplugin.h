@@ -1,5 +1,6 @@
 #include "modelsviewplugin.h"
 #include "ascview.h"
+#include "dsview.h"
 
 class CarofePlugin: public ModelsViewPlugin {
 public:
